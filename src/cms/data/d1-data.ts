@@ -153,9 +153,10 @@ export function getRepoFromTable(tableName) {
 export function sortClauseBuilder(params) {
   let sortClause = '';
 
-if(params.sort){
-  sortClause = 'order by ' + params.sort.join(", ").replace(new RegExp(":", "g"),' ')
-}
+  if (params.sort) {
+    sortClause =
+      'order by ' + params.sort.join(', ').replace(new RegExp(':', 'g'), ' ');
+  }
 
   return sortClause;
 }

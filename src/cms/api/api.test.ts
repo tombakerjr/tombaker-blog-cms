@@ -82,11 +82,13 @@ describe('auto endpoints', () => {
     await CreateTestCategory(ctx, 'cat 1', 'aaa');
     await CreateTestCategory(ctx, 'cat 2', 'bbb');
 
-
-    let req = new Request('http://localhost/v1/categories?sort[0]=body&sort[1]=title', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    });
+    let req = new Request(
+      'http://localhost/v1/categories?sort[0]=body&sort[1]=title',
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
     let res = await app.fetch(req, ctx.env);
     expect(res.status).toBe(200);
     let body = await res.json();
@@ -94,7 +96,6 @@ describe('auto endpoints', () => {
     expect(body.data[0].body).toBe('aaa');
     expect(body.data[1].body).toBe('bbb');
     expect(body.data[2].body).toBe('ccc');
-
   });
 
   it('get sort desc on 2 fields', async () => {
@@ -103,11 +104,13 @@ describe('auto endpoints', () => {
     await CreateTestCategory(ctx, 'cat 1', 'aaa');
     await CreateTestCategory(ctx, 'cat 2', 'bbb');
 
-
-    let req = new Request('http://localhost/v1/categories?sort[0]=body:desc&sort[1]=title', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
-    });
+    let req = new Request(
+      'http://localhost/v1/categories?sort[0]=body:desc&sort[1]=title',
+      {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }
+    );
     let res = await app.fetch(req, ctx.env);
     expect(res.status).toBe(200);
     let body = await res.json();
@@ -115,7 +118,6 @@ describe('auto endpoints', () => {
     expect(body.data[0].body).toBe('ccc');
     expect(body.data[1].body).toBe('bbb');
     expect(body.data[2].body).toBe('aaa');
-
   });
 
   it('post (insert) should return 204', async () => {
@@ -226,7 +228,6 @@ describe('filters', () => {
     await CreateTestCategory(ctx, 'dog');
     await CreateTestCategory(ctx, 'dog');
 
-
     let req = new Request(
       'http://localhost/v1/categories?filters[title][$eq]=dog',
       {
@@ -244,8 +245,11 @@ describe('filters', () => {
 
   it('filter with 2 conditions should return results and 200', async () => {
     await createCategoriesTestTable1(ctx);
-    await CreateTestCategory(ctx, 'dog', 'be the person your dog thinks you are');
-
+    await CreateTestCategory(
+      ctx,
+      'dog',
+      'be the person your dog thinks you are'
+    );
 
     let req = new Request(
       'http://localhost/v1/categories?filters[title][$eq]=dog&filters[body][$eq]=be+the+person+your+dog+thinks+you+are',
@@ -261,5 +265,4 @@ describe('filters', () => {
     expect(body.data[0].title).toBe('dog');
     expect(body.data[0].title).toBe('dog');
   });
-
 });
