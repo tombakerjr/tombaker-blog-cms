@@ -8,6 +8,14 @@ export function isAdminOrEditor(ctx: AppContext) {
   }
   return false;
 }
+export function isReader(ctx: AppContext) {
+  const user = ctx.get('user');
+  const role = user?.role?.toLowerCase() || '';
+  if (role === 'admin' || role === 'editor' || role === 'reader') {
+    return true;
+  }
+  return false;
+}
 
 export function isAdmin(ctx: AppContext) {
   const user = ctx.get('user');

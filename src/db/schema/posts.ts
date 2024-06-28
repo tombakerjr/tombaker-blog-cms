@@ -6,7 +6,7 @@ import * as users from './users';
 import * as categoriesToPosts from './categoriesToPosts';
 import * as comments from './comments';
 import { ApiConfig } from '../routes';
-import { isAdmin, isAdminOrEditor } from '../config-helpers';
+import { isAdmin, isAdminOrEditor, isReader } from '../config-helpers';
 
 export const tableName = 'posts';
 
@@ -46,7 +46,7 @@ export const relation = relations(table, ({ one, many }) => ({
 
 export const access: ApiConfig['access'] = {
   operation: {
-    read: true,
+    read: isReader,
     create: isAdminOrEditor
   },
   filter: {
