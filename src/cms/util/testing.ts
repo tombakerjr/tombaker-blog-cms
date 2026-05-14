@@ -87,11 +87,9 @@ export async function createLuciaUser(
   const users = await getD1DataByTable(ctx.env.D1DATA, 'users', { email });
   expect(users.length).toBeGreaterThan(0);
 
-  const usersKeys = await getD1DataByTable(
-    ctx.env.D1DATA,
-    'user_keys',
-    { email }
-  );
+  const usersKeys = await getD1DataByTable(ctx.env.D1DATA, 'user_keys', {
+    email
+  });
   expect(usersKeys.length > 0).toBe(true);
   // const dbUser = user.data.filter((u) => u.data.email = email);
   return users[0];
