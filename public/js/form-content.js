@@ -39,9 +39,8 @@ let mode;
 let currUppyField = '';
 
 async function initUppy(id) {
-  const { Uppy, Url, Dashboard, Tus, ImageEditor } = await import(
-    'https://releases.transloadit.com/uppy/v3.21.0/uppy.min.mjs'
-  );
+  const { Uppy, Url, Dashboard, Tus, ImageEditor } =
+    await import('https://releases.transloadit.com/uppy/v3.21.0/uppy.min.mjs');
   const uppy = new Uppy();
   uppy.use(Dashboard, {
     target: '#files-drag-drop',

@@ -195,7 +195,6 @@ describe('admin should be restricted', () => {
     expect(body.data.email).toBe('user2@user.com');
     expect(body.data.firstName).toBe('Uppy');
 
-
     //make sure db was updated
     const d1Result = await getRecords(ctx, 'users', { id: user.id }, undefined);
 
